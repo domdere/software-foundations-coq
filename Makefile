@@ -13,4 +13,5 @@ $(output_dir)/%.vo: $(output_dir)/%.v
 	$(compilecoq) $<
 
 clean:
-	rm -f $(output_dir)
+	rm -f $(output_dir)/*.vo
+	rm -f $(output_dir)/*.v
