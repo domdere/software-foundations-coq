@@ -5,21 +5,26 @@ src_dir := src
 output_dir := build
 
 
-output_vo := MyFirstCoq.vo
-
-output := $(patsubst %,$(output_dir)/%,$(output_vo))
+ch1_src_dir := $(src)/ch1-Basics
+ch1_build_dir := $(output_dir)/ch1-Basics
+ch1_vo := EnumeratedTypes.vo
+ch1_output := $(patsubst %,$(ch1_build_dir)/%,$(ch1_vo))
 
 
 .PHONY: clean
 
-$(output_dir)/%.v: $(src_dir)/%.v
+ch1outputdir:
+	mkdir -p $(ch1_build_dir)
+
+$(ch1_build_dir)/%.v: $(ch1_src_dir)/%.v ch1outputdir
 	cp $< $@
 
-$(output_dir)/%.vo: $(output_dir)/%.v
+$(ch1_output_dir)/%.vo: $(ch1_build_dir)/%.v ch1outputdir
 	$(compilecoq) $<
 
-default: $(output)
+ch1: $(ch1_output)
+
+default: ch1
 
 clean:
-	rm -f $(output_dir)/*.vo
-	rm -f $(output_dir)/*.v
+	rm -rfv $(ch1_build_dir)
