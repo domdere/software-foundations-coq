@@ -5,7 +5,7 @@ src_dir := src
 output_dir := build
 
 
-ch1_src_dir := $(src)/ch1-Basics
+ch1_src_dir := $(src_dir)/ch1-Basics
 ch1_build_dir := $(output_dir)/ch1-Basics
 ch1_vo := EnumeratedTypes.vo
 ch1_output := $(patsubst %,$(ch1_build_dir)/%,$(ch1_vo))
@@ -19,7 +19,7 @@ ch1outputdir:
 $(ch1_build_dir)/%.v: $(ch1_src_dir)/%.v ch1outputdir
 	cp $< $@
 
-$(ch1_output_dir)/%.vo: $(ch1_build_dir)/%.v ch1outputdir
+$(ch1_build_dir)/%.vo: $(ch1_build_dir)/%.v ch1outputdir
 	$(compilecoq) $<
 
 ch1: $(ch1_output)
