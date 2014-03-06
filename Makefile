@@ -13,18 +13,18 @@ ch1_output := $(patsubst %,$(ch1_build_dir)/%,$(ch1_vo))
 
 .PHONY: clean
 
-ch1outputdir:
+default: ch1
+
+$(ch1_build_dir):
 	mkdir -p $(ch1_build_dir)
 
-$(ch1_build_dir)/%.v: $(ch1_src_dir)/%.v ch1outputdir
+$(ch1_build_dir)/%.v: $(ch1_src_dir)/%.v $(ch1_build_dir)
 	cp $< $@
 
-$(ch1_build_dir)/%.vo: $(ch1_build_dir)/%.v ch1outputdir
+$(ch1_build_dir)/%.vo: $(ch1_build_dir)/%.v $(ch1_build_dir)
 	$(compilecoq) $<
 
 ch1: $(ch1_output)
-
-default: ch1
 
 clean:
 	rm -rfv $(ch1_build_dir)
