@@ -203,7 +203,7 @@ Notation "x + y" := (plus x y)
                         (at level 50, left associativity)
                         : nat_scope.
 
-Notation "x - y" := (plus x y)
+Notation "x - y" := (minus x y)
                         (at level 50, left associativity)
                         : nat_scope.
 Notation "x * y" := (mult x y)
