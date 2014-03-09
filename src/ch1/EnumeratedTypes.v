@@ -212,6 +212,14 @@ Notation "x * y" := (mult x y)
 
 Check ((0 + 1) + 1).
 
+Fixpoint beq_nat (n m : nat) : bool :=
+    match n, m with
+    | O, O          => true
+    | O, S _        => false
+    | S _, O        => false
+    | S n', S m'    => beq_nat n' m'
+    end.
+
 Fixpoint ble_nat (n m : nat) : bool :=
     match n with
     | O => true
