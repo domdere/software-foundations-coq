@@ -1,5 +1,6 @@
 compilecoq := coqc -noglob -init-file coq.config
 coq_makefile := coq_makefile -R .
+coq_top := coqtop -R . ""
 coqsource := $(shell find src -name \*.v)
 src_dir := src
 output_dir := build
@@ -22,6 +23,9 @@ default: all
 
 makefile: $(all_build_src)
 	cd $(output_dir); $(coq_makefile) $(drop_build_dir) > Makefile.coq
+
+console: $(all_build_src)
+	cd $(output_dir); $(coq_top)
 
 all: makefile
 	cd $(output_dir); make -f Makefile.coq
