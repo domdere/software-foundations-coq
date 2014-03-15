@@ -27,3 +27,18 @@ Proof.
     rewrite -> H.
     rewrite -> negb_involutive.
     reflexivity. Qed.
+
+(*
+
+Consider a different, more efficient representation of natural numbers using a binary rather than unary system. That is, instead of saying that each natural number is either zero or the successor of a natural number, we can say that each binary number is either
+zero,
+twice a binary number, or
+one more than twice a binary number.
+(a) First, write an inductive definition of the type bin corresponding to this description of binary numbers.
+
+*)
+
+Inductive bin : Type :=
+    | O : bin
+    | Even : bin -> bin
+    | Odd : bin -> bin.
