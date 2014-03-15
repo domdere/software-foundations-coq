@@ -18,9 +18,9 @@ Definition next_weekday (d:day) : day :=
     | sunday => monday
     end.
 
-Eval compute in (next_weekday friday).
+(* Eval compute in (next_weekday friday).
 
-Eval compute in (next_weekday (next_weekday saturday)).
+Eval compute in (next_weekday (next_weekday saturday)). *)
 
 Example test_next_weekday:
     (next_weekday (next_weekday saturday)) = tuesday.
@@ -98,6 +98,8 @@ Proof. reflexivity. Qed.
 Example test_andb34: (andb3 true true false) = false.
 Proof. reflexivity. Qed.
 
+(*
+
 Check true.
 
 Check negb.
@@ -105,6 +107,8 @@ Check negb.
 Check (negb true).
 
 Check (andb3 true).
+
+*)
 
 Module Playground1.
 
@@ -126,13 +130,15 @@ Definition minustwo (n : nat) : nat :=
         | S O => O
         | S (S n') => n'
     end.
-
+(*
 Check (S (S (S (S O)))).
 Eval simpl in (minustwo 4).
 
 Check S.
 Check pred.
 Check minustwo.
+
+*)
 
 Fixpoint evenb (n : nat) : bool :=
     match n with
@@ -157,9 +163,13 @@ Fixpoint plus (n m : nat) : nat :=
         | S n'  => S (plus n' m)
     end.
 
+(*
+
 Eval simpl in (plus (S (S (S O))) (S (S O))).
 
 Eval simpl in (plus 3 2).
+
+*)
 
 Fixpoint mult (n m : nat) : nat :=
     match n with
@@ -209,8 +219,11 @@ Notation "x - y" := (minus x y)
 Notation "x * y" := (mult x y)
                         (at level 40, left associativity)
                         : nat_scope.
+(*
 
 Check ((0 + 1) + 1).
+
+*)
 
 Fixpoint beq_nat (n m : nat) : bool :=
     match n, m with
